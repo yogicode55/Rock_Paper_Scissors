@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body{
+            background-color: lightblue;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            padding: 10px;
+        }
+        h1{
+            text-align: center;
+            color: black;
+            font-family: monospace;
+            text-decoration: dotted;
+        }
+        p{
+            font-size: 17px;
+            text-align: center;
+            font-family: monospace;
+        }
+        .buttons-container {
+            text-align: center;
+            margin: 50px 0 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            border:3px solid black;
+            background-color: white;
+            cursor: pointer;
+            outline: none;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        button:hover{
+            background-color: rgb(143, 174, 240);
+        }
+        img {
+            width: 100px;
+            height: 100px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>ROCK PAPER SCISSORS</h1>
+    <p>PICK ANYONE TO SEE WHO WILL WIN</p>
+    <div class="buttons-container">
+        <button id="ROCK" onclick="playGame('Rock')">
+            <img src="fist.png" alt="Rock">
+            <p>ROCK</p>
+        </button>
+        <button id="PAPER" onclick="playGame('Paper')">
+            <img src="paper.png" alt="Paper">
+            <p>PAPER</p>
+        </button>
+        <button id="SCISSORS" onclick="playGame('Scissors')">
+            <img src="scissors.png" alt="Scissors">
+            <p>SCISSORS</p>
+        </button>
+    </div>
+    <p id="result"></p>
+
+    <script>
+        function playGame(userChoice) {
+            const choices = ['Rock', 'Paper', 'Scissors'];
+            const computerChoice = choices[Math.floor(Math.random() * 3)];
+            let result = '';
+
+            if (userChoice === computerChoice) {
+                result = "It's a draw!";
+            } else if (
+                (userChoice === 'Rock' && computerChoice === 'Scissors') ||
+                (userChoice === 'Paper' && computerChoice === 'Rock') ||
+                (userChoice === 'Scissors' && computerChoice === 'Paper')
+            ) {
+                result = `You win! ${userChoice} beats ${computerChoice}.`;
+            } else {
+                result = `You lose! ${computerChoice} beats ${userChoice}.`;
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
